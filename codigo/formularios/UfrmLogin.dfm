@@ -5399,9 +5399,9 @@ object FrmLogin: TFrmLogin
       Stretch = True
     end
     object Label3: TLabel
-      Left = -9
-      Top = 460
-      Width = 327
+      Left = 79
+      Top = 462
+      Width = 146
       Height = 16
       Alignment = taCenter
       Caption = 'Clique aqui para registrar'
@@ -5413,12 +5413,13 @@ object FrmLogin: TFrmLogin
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = Label3Click
     end
     object labelTitulo: TLabel
-      Left = -1
+      Left = 79
       Top = 169
-      Width = 327
-      Height = 32
+      Width = 171
+      Height = 24
       Alignment = taCenter
       Anchors = [akLeft, akRight]
       Caption = 'Bem Vindo de volta'
@@ -5430,9 +5431,9 @@ object FrmLogin: TFrmLogin
       ParentFont = False
     end
     object lblLoguecontinuar: TLabel
-      Left = -6
-      Top = 207
-      Width = 333
+      Left = 105
+      Top = 191
+      Width = 112
       Height = 15
       Alignment = taCenter
       Anchors = [akLeft, akRight]
@@ -5446,12 +5447,12 @@ object FrmLogin: TFrmLogin
     end
     object Label2: TLabel
       Left = 105
-      Top = 443
+      Top = 451
       Width = 96
       Height = 13
       Caption = 'N'#227'o possui  conta ? '
     end
-    object Edit1: TEdit
+    object edtLogin: TEdit
       Left = 56
       Top = 248
       Width = 201
@@ -5466,7 +5467,7 @@ object FrmLogin: TFrmLogin
       TabOrder = 0
       TextHint = 'Login'
     end
-    object Edit2: TEdit
+    object Edtsenha: TEdit
       Left = 56
       Top = 279
       Width = 201
@@ -5481,6 +5482,15 @@ object FrmLogin: TFrmLogin
       PasswordChar = '*'
       TabOrder = 1
       TextHint = 'Senha'
+    end
+    object Button1: TButton
+      Left = 79
+      Top = 336
+      Width = 162
+      Height = 41
+      Caption = 'Logar'
+      TabOrder = 2
+      OnClick = Button1Click
     end
   end
 end

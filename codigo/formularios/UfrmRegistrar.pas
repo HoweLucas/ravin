@@ -64,7 +64,9 @@ var
   LDao: TUsuarioDao;
 begin
   try
-   Lusuario := Tusuario.create;
+   try
+
+    Lusuario := Tusuario.create;
     LUsuario.Login := edtLogin.text;
     LUsuario.Senha := edtsenha.text;
     Lusuario.pessoaId :=10000;
@@ -79,20 +81,25 @@ begin
     LDAo.inserirUsuario(LUsuario);
 
     freeAndNil(LDao);
-  except
-   on E : EMySQLNativeException do begin
+     except
+     on E : EMySQLNativeException do begin
      ShowMessage('Erro ao inserir o usuário no banco');
-   end;
-   on E: Exception do begin
+     end;
 
-    ShowMessage(e.Message);
+     on E: Exception do begin
+     ShowMessage(e.Message);
+     // Se tiver 1 ou mais de 'on', O exception deve ficar em ultimo
+     end;
    end;
+  finally
+    if Assigned(LDAO) then
+    begin
+      FreeAndNil(LDAO);
+    end;
 
+    FreeAndNil(Lusuario);
   end;
-
-  FreeAndNil(Lusuario);
-
-end;
+ end;
 
 procedure TfrmRegistrar.lblSubTituloAutenticarClick(Sender: TObject);
 begin

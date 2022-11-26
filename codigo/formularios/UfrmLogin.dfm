@@ -5399,17 +5399,17 @@ object FrmLogin: TFrmLogin
       Stretch = True
     end
     object Label3: TLabel
-      Left = 79
-      Top = 462
-      Width = 146
-      Height = 16
+      Left = 63
+      Top = 454
+      Width = 181
+      Height = 19
       Alignment = taCenter
       Caption = 'Clique aqui para registrar'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clGreen
-      Font.Height = 16
-      Font.Name = 'Tahoma'
+      Font.Height = -16
+      Font.Name = 'Roboto'
       Font.Style = []
       ParentColor = False
       ParentFont = False
@@ -5447,10 +5447,16 @@ object FrmLogin: TFrmLogin
     end
     object Label2: TLabel
       Left = 105
-      Top = 451
-      Width = 96
-      Height = 13
+      Top = 435
+      Width = 114
+      Height = 15
       Caption = 'N'#227'o possui  conta ? '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGrayText
+      Font.Height = -13
+      Font.Name = 'Roboto'
+      Font.Style = []
+      ParentFont = False
     end
     object edtLogin: TEdit
       Left = 56
@@ -5484,10 +5490,10 @@ object FrmLogin: TFrmLogin
       TextHint = 'Senha'
     end
     object Button1: TButton
-      Left = 79
+      Left = 56
       Top = 336
-      Width = 162
-      Height = 41
+      Width = 201
+      Height = 49
       Caption = 'Logar'
       TabOrder = 2
       OnClick = Button1Click

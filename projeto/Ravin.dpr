@@ -18,7 +18,9 @@ uses
   UusuarioDao in '..\codigo\dao\UusuarioDao.pas',
   UfrmBotaoPrimario in '..\codigo\frames\UfrmBotaoPrimario.pas' {frmBotaoPrimario: TFrame},
   UfrmRegistrar in '..\codigo\formularios\UfrmRegistrar.pas' {frmRegistrar},
-  UvalidadorUsuario in '..\codigo\Validadores\UvalidadorUsuario.pas';
+  UvalidadorUsuario in '..\codigo\Validadores\UvalidadorUsuario.pas',
+  UiniUtils in '..\codigo\Util\UiniUtils.pas',
+  UfrmUsuarios in '..\codigo\formularios\UfrmUsuarios.pas' {bntcarregar};
 
 {$R *.res}
 
@@ -30,5 +32,6 @@ begin
   Application.CreateForm(TfrmSplash, frmSplash);
   Application.CreateForm(TfrmRegistrar, frmRegistrar);
   Application.CreateForm(TfrmRegistrar, frmRegistrar);
+  Application.CreateForm(Tbntcarregar, bntcarregar);
   Application.Run;
 end.

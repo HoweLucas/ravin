@@ -5,6 +5,7 @@ interface
 uses
 system.SysUtils,
 Uusuario,
+Generics.Collections,
 FireDAC.Comp.Client;
 
 type TUsuarioDao = class
@@ -13,8 +14,11 @@ type TUsuarioDao = class
   protected
 
   public
+  function BuscarTodosUsuarios : TList<TUsuario>;
+
   function BuscarUsuarioPorLoginSenha (
        PLogin: String; PSenha:String) : TUsuario;
+
   procedure InserirUsuario(PUsuario: TUsuario);
 
 end;
@@ -28,6 +32,7 @@ implementation
 
 uses UdmRavin;
 
+
 function TUsuarioDao.BuscarUsuarioPorLoginSenha(PLogin,
   PSenha: String): TUsuario;
 
@@ -37,10 +42,10 @@ var
 begin
   LQuery := TFDQuery.Create(nil);
   LQuery.connection := dmRavin.cnxBancoDeDados;
-  LQuery.SQL.Text   := ' SELECT * From Usuario ' +
-      ' Where login = : login AND senha = :senha ';
-  lQuery.ParamByName('login').AsString := PLogin;
-  LQuery.ParamByName('senha').AsString := Psenha;
+  LQuery.SQL.Text   := 'Select * from Usuario' +
+     'where login = :login AND senha = :senha';
+  LQuery.ParamByName('login').AsString := PLogin;
+  LQuery.ParamByName('senha').AsString := PSenha;
   Lquery.Open();
 
   LUsuario := nil;
@@ -54,7 +59,7 @@ begin
       LUsuario.pessoaId    := LQuery.FieldByName('pessoaId').AsInteger;
       LUsuario.criadoEm    := Lquery.FieldByName('criadoEm').AsDateTime;
       LUsuario.criadoPor   := LQuery.FieldByName('criadoPor').AsString;
-      LUsuario.alteradoEm  := LQuery.FieldByName('alteradiEm').AsdateTime;
+      LUsuario.alteradoEm  := LQuery.FieldByName('alteradoEm').AsdateTime;
       LUsuario.alteradoPor := LQuery.FieldByName('alteradoPor').AsString;
   end;
 
@@ -63,6 +68,47 @@ begin
   Result := LUsuario;
 
 end;
+
+
+
+function TUsuarioDao.BuscarTodosUsuarios: TList<TUsuario>;
+var
+  LLista       : TList<TUsuario>;
+  LUsuario     : TUsuario;
+  LQuery       : TFDQuery;
+
+begin
+  LQuery            := TFDQuery.Create(nil);
+  LQuery.Connection := dmRavin.cnxBancoDeDados;
+  LQuery.SQL.Text   := 'Select * from Usuario';
+  LQuery.Open();
+
+  LQuery.First;
+
+while not LQuery.Eof do
+ Begin
+
+   LUsuario             := TUsuario.create();
+   LUsuario.id          := LQuery.FieldByName('id').AsInteger;
+   LUsuario.login       := LQuery.FieldByName('login').AsString;
+   LUsuario.senha       := LQuery.FieldByName('senha').AsString;
+   LUsuario.pessoaId    := LQuery.FieldByName('pessoaId').AsInteger;
+   LUsuario.criadoEm    := Lquery.FieldByName('criadoEm').AsDateTime;
+   LUsuario.criadoPor   := LQuery.FieldByName('criadoPor').AsString;
+   LUsuario.alteradoEm  := LQuery.FieldByName('alteradoEm').AsdateTime;
+   LUsuario.alteradoPor := LQuery.FieldByName('alteradoPor').AsString;
+
+   LLista.Add(LUsuario);
+   LQuery.Next;
+   end;
+
+ Result := LLista;
+ FreeAndNil(LQuery);
+
+End;
+
+
+
 procedure TUsuarioDao.InserirUsuario(PUsuario: TUsuario);
 Var
   Lquery: TFDQuery;
@@ -77,6 +123,7 @@ begin
     SQL.add(' VALUES (:login, :senha, :pessoaID');
     SQL.add(' :criadoEm, :criadoPor, :alteradoEm, :alteradoPor)');
 
+    ParamByName('id').asInteger := PUsuario.id;
     ParamByName('login').AsString := Pusuario.login;
     ParamByName('senha').AsString := PUsuario.senha;
     ParamByName('pessoaId').AsInteger := PUsuario.pessoaId;

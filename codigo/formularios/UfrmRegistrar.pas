@@ -39,7 +39,6 @@ type
     procedure frmBotaoPrimarioRegistrarspbBotaoPrimarioClick(Sender: TObject);
   private
     { Private declarations }
-    procedure SetMainForm(NovoMainForm: TForm);
   public
     { Public declarations }
   end;
@@ -53,7 +52,7 @@ uses
   UusuarioDao,
   Uusuario,
   UfrmLogin,
-  UvalidadorUsuario;
+  UvalidadorUsuario, UFormUtils;
 
 {$R *.dfm}
 
@@ -108,18 +107,10 @@ begin
    Application.CreateForm(TfrmLogin, frmLogin);
   end;
 
-  SetMainForm(frmLogin);
+  //SetMainForm
+  TFormUtils.SetarFormularioPrincipal(frmLogin);
   frmLogin.Show();
 
   Close();
 end;
-
-procedure TfrmRegistrar.SetMainForm(NovoMainForm: TForm);
-var
-  tmpMain: ^TCustomForm;
-begin
-  tmpMain := @Application.Mainform;
-  tmpMain^ := NovoMainForm;
-end;
-
 end.

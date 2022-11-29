@@ -11,12 +11,13 @@ uses
   IniFiles;
 
 type
-  TSECAO = (CONFIGURACOES, INFORMACOES_GERAIS);
+  TSECAO = (CONFIGURACOES, INFORMACOES_GERAIS, BANCO);
 
 type
-  TPROPRIEDADE = (NOME_DATABASE, LOGADO);
+  TPROPRIEDADE = (LOGADO, SERVIDOR_BANCO, PORTA_BANCO, USUARIO_BANCO, SENHA_BANCO,
+  NOME_BANCO, CAMINHO_BANCO,DRIVER_ID_BANCO);
 
-type
+  type
   TIniUtils = class
   private
 
@@ -39,6 +40,7 @@ type
 implementation
 
 { TIniUltis }
+
 
 constructor TIniUtils.Create;
 begin

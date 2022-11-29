@@ -42,7 +42,7 @@ var
 begin
   LQuery := TFDQuery.Create(nil);
   LQuery.connection := dmRavin.cnxBancoDeDados;
-  LQuery.SQL.Text   := 'Select * from Usuario' +
+  LQuery.SQL.Text   := 'Select * from Usuario ' +
      'where login = :login AND senha = :senha';
   LQuery.ParamByName('login').AsString := PLogin;
   LQuery.ParamByName('senha').AsString := PSenha;

@@ -20,7 +20,8 @@ uses
   UfrmRegistrar in '..\codigo\formularios\UfrmRegistrar.pas' {frmRegistrar},
   UvalidadorUsuario in '..\codigo\Validadores\UvalidadorUsuario.pas',
   UiniUtils in '..\codigo\Util\UiniUtils.pas',
-  UfrmUsuarios in '..\codigo\formularios\UfrmUsuarios.pas' {bntcarregar};
+  UfrmUsuarios in '..\codigo\formularios\UfrmUsuarios.pas' {bntcarregar},
+  UFormUtils in '..\codigo\Util\UFormUtils.pas';
 
 {$R *.res}
 
@@ -30,8 +31,5 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.CreateForm(TdmRavin, dmRavin);
   Application.CreateForm(TfrmSplash, frmSplash);
-  Application.CreateForm(TfrmRegistrar, frmRegistrar);
-  Application.CreateForm(TfrmRegistrar, frmRegistrar);
-  Application.CreateForm(Tbntcarregar, bntcarregar);
   Application.Run;
 end.

@@ -26,7 +26,6 @@ type
     procedure Label3Click(Sender: TObject);
   private
     { Private declarations }
-    procedure SetarFormPrincipal(PNovoFormulario: TForm);
   public
     { Public declarations }
   end;
@@ -37,7 +36,7 @@ var
 implementation
 
 uses
-  UfrmPainelGestao, UusuarioDao, Uusuario, UfrmRegistrar, UiniUtils;
+  UfrmPainelGestao, UusuarioDao, Uusuario, UfrmRegistrar, UiniUtils, UFormUtils;
 
 {$R *.dfm}
 
@@ -73,7 +72,7 @@ begin
       end;
     end;
 
-    SetarFormPrincipal(frmPainelGestao);
+    TFormUtils.SetarFormularioPrincipal(frmPainelGestao);
     frmpainelgestao.Show();
 
     close;
@@ -115,17 +114,9 @@ begin
    Application.CreateForm(TfrmRegistrar, frmRegistrar);
   end;
 
-  SetarFormPrincipal(frmRegistrar);
+  TformUtils.SetarFormularioPrincipal  (frmRegistrar);
   frmRegistrar.Show();
 
   Close();
-end;
-
-procedure TFrmLogin.SetarFormPrincipal(PNovoFormulario: TForm);
-var
-  tmpMain: ^TCustomForm;
-begin
-  tmpMain  := @Application.Mainform;
-  tmpMain^ := PNovoFormulario;
 end;
 end.

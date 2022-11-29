@@ -3,8 +3,20 @@ unit UfrmUsuarios;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Classes, Generics.Collections;
+  Winapi.Windows,
+  Winapi.Messages,
+
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.StdCtrls,
+
+  Generics.Collections;
 
 type
   Tbntcarregar = class(TForm)
@@ -29,13 +41,13 @@ uses
 
 procedure Tbntcarregar.Button1Click(Sender: TObject);
 var
-  LDao: TUsuarioDao;
-  Lusuario: TUsuario;
-  LLista  : TList<TUsuario>;
-  I : Integer;
+  LDao     : TUsuarioDao;
+  LUsuario : TUsuario;
+  LLista   : TList<TUsuario>;
+  I        : Integer;
 begin
 
-  LDAO := TUsuarioDao.Create();
+  LDAO   := TUsuarioDao.Create();
   lLista := LDAo.BuscarTodosUsuarios();
 
   for I := 0 to LLista.Count - 1 do

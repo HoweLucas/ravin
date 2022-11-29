@@ -31,7 +31,7 @@ var
 
 implementation
 
-uses UresourceUtils;
+uses UresourceUtils, UiniUtils;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -58,20 +58,19 @@ var
   LCaminhoBaseDados: String;
   LCriarBaseDados: Boolean;
   begin
-  LcaminhoBaseDados  := 'C:\ProgramData\MySQL\MySQL Server 8.0' +
-                                         '\Data\ravin\pessoa.ibd';
+  LcaminhoBaseDados  :=TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.CAMINHO_BANCO);
   LCriarBAseDados := not FileExists(LcaminhoBaseDados, True);
   with cnxBancoDeDados do
   begin
-    Params.Values['Serve']     := 'localhost';
-    Params.Values['User_Name'] := 'root';
-    Params.Values['Password']  := 'root';
-    params.Values['DriverID']  := 'MySQL';
-    Params.Values['Port']      := '3306';
+    Params.Values['Serve']     := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.SERVIDOR_BANCO);
+    Params.Values['User_Name'] := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.USUARIO_BANCO);
+    Params.Values['Password']  := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.SENHA_BANCO);
+    params.Values['DriverID']  := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.DRIVER_ID_BANCO);
+    Params.Values['Port']      := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.PORTA_BANCO);
 
     if not LCriarBaseDados then
     begin
-      Params.Values['DataBase'] := 'ravin';
+      Params.Values['DataBase'] := TIniUtils.lerPropriedade(TSECAO.BANCO, TPROPRIEDADE.NOME_BANCO);
     end;
  end;
 end;
@@ -89,7 +88,7 @@ end;
 
 procedure TdmRavin.DataModuleCreate(Sender: TObject);
 begin
-  if cnxBancoDeDados.connected then begin
+  if not cnxBancoDeDados.connected then begin
     cnxBAncoDeDados.Connected := true;
   end;
 end;

@@ -3,7 +3,7 @@ object frmSplash: TfrmSplash
   Top = 0
   BorderIcons = []
   BorderStyle = bsToolWindow
-  Caption = 'Splash'
+  Caption = '2'
   ClientHeight = 490
   ClientWidth = 650
   Color = clBtnFace

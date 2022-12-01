@@ -25,7 +25,7 @@ Class procedure TFormUtils.SetarFormularioPrincipal(
 var
   tmpMain: ^TCustomForm;
 begin
-  tmpMain := @Application.Mainform;
+  tmpMain  := @Application.Mainform;
   tmpMain^ := PNovoFormularioPricipal;
 end;
 end.

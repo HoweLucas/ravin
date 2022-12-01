@@ -21,7 +21,11 @@ uses
   UvalidadorUsuario in '..\codigo\Validadores\UvalidadorUsuario.pas',
   UiniUtils in '..\codigo\Util\UiniUtils.pas',
   UfrmUsuarios in '..\codigo\formularios\UfrmUsuarios.pas' {bntcarregar},
-  UFormUtils in '..\codigo\Util\UFormUtils.pas';
+  UFormUtils in '..\codigo\Util\UFormUtils.pas',
+  UfrmBotaoCancelar in '..\codigo\frames\UfrmBotaoCancelar.pas' {frmBotaoCancelar: TFrame},
+  UfrmBotaoExcluir in '..\codigo\frames\UfrmBotaoExcluir.pas' {frmBotaoExcluir: TFrame},
+  UfrmCadastroCliente in '..\codigo\formularios\UfrmCadastroCliente.pas' {frmCadastroCliente},
+  UfrmListaClientes in '..\codigo\formularios\UfrmListaClientes.pas' {frmListaClientes};
 
 {$R *.res}
 
